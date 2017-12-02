@@ -13,17 +13,23 @@ public class CitizenMovement : MonoBehaviour {
     bool walking;
     float waitCurrent;
     float movementSpeed;
-
     NavMeshAgent nav;
+	Transform targetTransform = null;
+	Citizen.CitizenType citizenType;
 
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
-        destination = RandomNavSphere(transform.position, RandomPathSearchDistance, -1);
+        destination = DirectionalNavSphere(transform.position, UnityEngine.Random.insideUnitSphere, RandomPathSearchDistance, -1);
         walking = false;
         waitCurrent = 0;//Random.Range(waitMin, waitMax);
         movementSpeed = 0;
+		citizenType = GetComponent<Citizen>().Type;
+		if (citizenType == Citizen.CitizenType.Attacker)
+		{
+			targetTransform = GameManager.VIP.transform;
+		}
     }
 	
 	// Update is called once per frame
@@ -33,7 +39,7 @@ public class CitizenMovement : MonoBehaviour {
         if (movementSpeed >= 0.1)
         {
             walking = true;
-        } else if (movementSpeed < 0.1 && walking == true)
+        } else if (movementSpeed < 0.1 && walking == true && citizenType != Citizen.CitizenType.Attacker)
         {
             walking = false;
             waitCurrent = Random.Range(waitMin, waitMax);
@@ -41,21 +47,40 @@ public class CitizenMovement : MonoBehaviour {
         if (walking == false && waitCurrent > 0)
         {
             waitCurrent -= Time.deltaTime;
-        } else if (walking == false && waitCurrent <= 0)
+        } else if ((walking == false && waitCurrent <= 0) || citizenType == Citizen.CitizenType.Attacker)
         {
-            destination = RandomNavSphere(transform.position, RandomPathSearchDistance, -1);
+			Vector3 direction = targetTransform != null ? (targetTransform.position - transform.position).normalized  : UnityEngine.Random.insideUnitSphere;
+			destination = DirectionalNavSphere(transform.position, direction, RandomPathSearchDistance, -1);
             nav.SetDestination(destination);
             waitCurrent = 0;
             walking = true;
         }
+
+		if (targetTransform)
+		{
+			if (Vector3.Distance(targetTransform.position, transform.position) < 1.0f)
+			{
+				OnTargetReached();
+			}
+		}
 	}
 
-    public static Vector3 RandomNavSphere(Vector3 origin, float distance, int layermask)
-    {
-        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * distance;
-        randomDirection += origin;
-        NavMeshHit navHit;
-        NavMesh.SamplePosition(randomDirection, out navHit, distance, layermask);
-        return navHit.position;
-    }
+	void OnTargetReached()
+	{
+		if (citizenType == Citizen.CitizenType.Attacker)
+		{
+			if (targetTransform.gameObject == GameManager.VIP)
+			{
+				targetTransform.SendMessage("OnHit", 100);
+			}
+		}
+	}
+
+	public static Vector3 DirectionalNavSphere(Vector3 origin, Vector3 direction, float distance, int layermask)
+	{
+		Vector3 walkTargetPosition = (direction * distance) + origin;
+		NavMeshHit navHit;
+		NavMesh.SamplePosition(walkTargetPosition, out navHit, distance, layermask);
+		return navHit.position;
+	}
 }

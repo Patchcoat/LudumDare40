@@ -47,7 +47,10 @@ public class Citizen : MonoBehaviour
 		{
 			isAlive = false;
 			movement.enabled = false;
-			OnDeath.Invoke(this);
+			if (OnDeath != null)
+			{
+				OnDeath(this);
+			}
 		}
 	}
 }

@@ -1,10 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance { get; private set; }
+
+	[SerializeField] private GameObject vip;
+	public static GameObject VIP { get { return Instance.vip; } }
+
+	enum GameState
+	{
+		Play,
+		GameOver
+	};
+
+	GameState state = GameState.Play;
+	private Coroutine waitAndRestartRoutine = null;
+	[SerializeField] private float restartDelay;
 
 	void Awake()
 	{
@@ -56,13 +70,25 @@ public class GameManager : MonoBehaviour
 
 	void GameOver(Citizen.CitizenType reason)
 	{
-		if (reason == Citizen.CitizenType.VIP)
+		if (state == GameState.Play)
 		{
-			Debug.Log("Game over, they can't keep getting away with it!");
+			if (reason == Citizen.CitizenType.VIP)
+			{
+				Debug.Log("Game over, they can't keep getting away with it!");
+			}
+			else
+			{
+				Debug.Log("Game over, an innocents life has been lost.");
+			}
+			state = GameState.GameOver;
+			waitAndRestartRoutine = StartCoroutine(WaitAndRestart(restartDelay));
 		}
-		else
-		{
-			Debug.Log("Game over, an innocents life has been lost.");
-		}
+	}
+
+	IEnumerator WaitAndRestart(float waitTimeSeconds)
+	{
+		yield return new WaitForSeconds(waitTimeSeconds);
+		waitAndRestartRoutine = null;
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 }
