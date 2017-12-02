@@ -7,7 +7,6 @@ public class CitizenMovement : MonoBehaviour {
 
     [SerializeField] private float waitMax;
     [SerializeField] private float waitMin;
-    [SerializeField] private float health;
     [SerializeField] private float RandomPathSearchDistance;
     Animator animator;
     Vector3 destination;

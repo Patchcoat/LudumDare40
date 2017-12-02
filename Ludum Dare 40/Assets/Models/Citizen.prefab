@@ -326,9 +326,10 @@ GameObject:
   - component: {fileID: 135364887406359128}
   - component: {fileID: 195677064816468284}
   - component: {fileID: 114921477987243232}
+  - component: {fileID: 114859119095938406}
   m_Layer: 8
   m_Name: Citizen
-  m_TagString: Untagged
+  m_TagString: Citizen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -635,7 +636,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1855924298957664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 5.3519306, y: 1.3598261, z: -1.382854}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4221600397588330}
@@ -716,6 +717,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114859119095938406
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1855924298957664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 349697d4038aaa94fb0536949f090adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!114 &114921477987243232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -729,7 +742,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitMax: 4
   waitMin: 1
-  health: 10
   RandomPathSearchDistance: 10
 --- !u!135 &135364887406359128
 SphereCollider:

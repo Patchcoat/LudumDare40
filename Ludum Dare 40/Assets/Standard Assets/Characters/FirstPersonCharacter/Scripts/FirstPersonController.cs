@@ -13,6 +13,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private bool m_IsCrouching;
         [SerializeField] private bool m_IsAiming;
         [SerializeField] private float m_ShotForce;
+		[SerializeField] private float m_ShotDamage;
         [SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_CrouchDeltaHeight;
         [SerializeField] private float m_RunSpeed;
@@ -28,7 +29,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_FireSound;
 		[SerializeField] private GameObject m_BulletImpactPrefab;
 
-        private Camera m_Camera;
+		private Camera m_Camera;
         private bool m_Jump;
         private float m_YRotation;
         private float m_StandHeight;
@@ -250,16 +251,22 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // Play firing sound
             m_AudioSource.PlayOneShot(m_FireSound);
             // Preform raycast
-            Vector3 forward = m_Camera.transform.TransformDirection(Vector3.forward);
 			Ray ray = m_Camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
 			Debug.DrawRay(ray.origin, ray.direction, Color.red, 2.0f);
 
 			RaycastHit hit;
 			if (Physics.Raycast(ray, out hit, 8))
 			{
+				if (hit.collider.CompareTag("Citizen"))
+				{
+					// Citizen citizen = hit.collider.GetComponent<Citizen>(); // Namespace or type could not be found?
+					hit.collider.gameObject.SendMessage("OnHit", m_ShotDamage);
+
+				}
+
 				if (hit.rigidbody != null)
 				{
-					hit.rigidbody.AddForceAtPosition(forward.normalized * m_ShotForce, hit.point);
+					hit.rigidbody.AddForceAtPosition(ray.direction * m_ShotForce, hit.point);
 				}
 				else
 				{
@@ -279,7 +286,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             m_MouseLook.LookRotation (transform, m_Camera.transform);
         }
-
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
