@@ -246,6 +246,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void Fire()
         {
+            // Play firing sound
+            m_AudioSource.PlayOneShot(m_FireSound);
             // Preform raycast
             Vector3 forward = m_Camera.transform.TransformDirection(Vector3.forward);
             RaycastHit hit;
