@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
 
@@ -12,6 +11,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
     {
         [SerializeField] private bool m_IsWalking;
         [SerializeField] private bool m_IsCrouching;
+        [SerializeField] private bool m_IsAiming;
+        [SerializeField] private float m_ShotForce;
         [SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_CrouchDeltaHeight;
         [SerializeField] private float m_RunSpeed;
@@ -24,6 +25,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
+        [SerializeField] private AudioClip m_FireSound;
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -64,8 +66,23 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)
             {
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+                m_Jump = Input.GetButtonDown("Jump");
             }
+
+            if (Input.GetButtonDown("Fire2"))
+            {
+                Aim(true);
+            }
+            if (Input.GetButtonUp("Fire2"))
+            {
+                Aim(false);
+            }
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Fire();
+            }
+            
 
             if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
             {
@@ -177,8 +194,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void GetInput(out float speed)
         {
             // Read input
-            float horizontal = CrossPlatformInputManager.GetAxisRaw("Horizontal");
-            float vertical = CrossPlatformInputManager.GetAxisRaw("Vertical");
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            float vertical = Input.GetAxisRaw("Vertical");
 
             bool waswalking = m_IsWalking;
 
@@ -221,11 +238,27 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             if (m_IsCrouching)
             {
-                transform.position += new Vector3(0, m_CrouchDeltaHeight, 0);
                 GetComponent<CharacterController>().height = m_StandHeight;
                 Camera.main.transform.localPosition += new Vector3(0, m_CrouchDeltaHeight, 0);
                 m_IsCrouching = false;
             }
+        }
+
+        private void Fire()
+        {
+            // Preform raycast
+            Vector3 forward = m_Camera.transform.TransformDirection(Vector3.forward);
+            RaycastHit hit;
+            Physics.Raycast(m_Camera.transform.position, forward, out hit);
+            if (hit.rigidbody != null)
+            {
+                hit.rigidbody.AddForceAtPosition(forward.normalized* m_ShotForce, hit.point);
+            }
+        }
+
+        private void Aim(bool aiming)
+        {
+            m_Camera.fieldOfView = (aiming ? 20 : 60);
         }
 
         private void RotateView()
