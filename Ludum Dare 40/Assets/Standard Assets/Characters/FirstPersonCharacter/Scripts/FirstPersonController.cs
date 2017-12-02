@@ -26,6 +26,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
         [SerializeField] private AudioClip m_FireSound;
+		[SerializeField] private GameObject m_BulletImpactPrefab;
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -250,12 +251,23 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource.PlayOneShot(m_FireSound);
             // Preform raycast
             Vector3 forward = m_Camera.transform.TransformDirection(Vector3.forward);
-            RaycastHit hit;
-            Physics.Raycast(m_Camera.transform.position, forward, out hit, 8);
-            if (hit.rigidbody != null)
-            {
-                hit.rigidbody.AddForceAtPosition(forward.normalized* m_ShotForce, hit.point);
-            }
+			Ray ray = m_Camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+			Debug.DrawRay(ray.origin, ray.direction, Color.red, 2.0f);
+
+			RaycastHit hit;
+			if (Physics.Raycast(ray, out hit, 8))
+			{
+				if (hit.rigidbody != null)
+				{
+					hit.rigidbody.AddForceAtPosition(forward.normalized * m_ShotForce, hit.point);
+				}
+				else
+				{
+					GameObject.Instantiate(m_BulletImpactPrefab, hit.point, Quaternion.identity);
+				}
+			}
+			
+
         }
 
         private void Aim(bool aiming)
