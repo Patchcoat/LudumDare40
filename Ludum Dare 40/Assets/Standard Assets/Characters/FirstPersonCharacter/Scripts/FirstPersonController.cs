@@ -251,7 +251,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // Preform raycast
             Vector3 forward = m_Camera.transform.TransformDirection(Vector3.forward);
             RaycastHit hit;
-            Physics.Raycast(m_Camera.transform.position, forward, out hit);
+            Physics.Raycast(m_Camera.transform.position, forward, out hit, 8);
             if (hit.rigidbody != null)
             {
                 hit.rigidbody.AddForceAtPosition(forward.normalized* m_ShotForce, hit.point);
