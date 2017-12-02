@@ -743,7 +743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  type: 0
+  type: 2
 --- !u!135 &135736171644704462
 SphereCollider:
   m_ObjectHideFlags: 1
