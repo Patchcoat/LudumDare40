@@ -36,8 +36,8 @@ public class CitizenMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!alive /*&& nav.enabled == true*/) // I commented out this because nav.SetDestination produced errors otherwise
-        {
+        if (!alive /*&& nav.enabled == true*/) // (polar inertia): I commented this out because nav.SetDestination produced errors otherwise
+		{
             nav.enabled = false;
             animator.enabled = false;
             return;
