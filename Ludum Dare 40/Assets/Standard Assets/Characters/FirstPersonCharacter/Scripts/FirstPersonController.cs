@@ -50,6 +50,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
         private Rigidbody m_Rigidbody;
         private Animator m_animator;
+		private Coroutine m_fireRoutine;
+		private Camera m_scopeCamera;
 
         // Use this for initialization
         private void Start()
@@ -67,7 +69,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_MouseLook.ZoomedSensitivity = new Vector2(m_ZoomAimSpeed, m_ZoomAimSpeed);
             m_StandHeight = GetComponent<CharacterController>().height;
             m_Rigidbody = GetComponent<Rigidbody>();
-        }
+			m_scopeCamera = transform.Find("FirstPersonCharacter/rifle/metarig_001/canon_centered/Camera").GetComponent<Camera>();
+		}
 
 
         // Update is called once per frame
@@ -89,9 +92,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 Aim(false);
             }
 
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") && m_fireRoutine == null)
             {
-                Fire();
+				m_fireRoutine = StartCoroutine(Fire());
             }
             
 
@@ -259,19 +262,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // Play firing sound
             m_AudioSource.PlayOneShot(m_FireSound);
             // Preform raycast
-            Ray ray = m_Camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+            Ray ray = m_scopeCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
 			Debug.DrawRay(ray.origin, ray.direction, Color.red, 2.0f);
 
 			RaycastHit hit;
-			if (Physics.Raycast(ray, out hit, 8))
+			if (Physics.Raycast(ray, out hit, 1000))
 			{
 				if (hit.collider.CompareTag("Citizen"))
 				{
-					// Citizen citizen = hit.collider.GetComponent<Citizen>(); // Namespace or type could not be found?
 					hit.collider.gameObject.SendMessage("OnHit", m_ShotDamage);
-
 				}
-
 				if (hit.rigidbody != null)
 				{
 					hit.rigidbody.AddForceAtPosition(ray.direction * m_ShotForce, hit.point);
@@ -282,12 +282,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				}
 			}
             yield return new WaitForSeconds(0.1f);
-            //m_animator.SetBool("Fire", false);
-        }
+			//m_animator.SetBool("Fire", false);
+			m_fireRoutine = null;
+		}
 
         private void Aim(bool aiming)
         {
-            m_Camera.fieldOfView = (aiming ? m_ZoomFOV : m_Zoomout);
+            //m_Camera.fieldOfView = (aiming ? m_ZoomFOV : m_Zoomout);
             m_IsAiming = aiming;
             m_MouseLook.isAiming = aiming;
             m_animator.SetBool("Aim", aiming);

@@ -7,18 +7,24 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance { get; private set; }
 
-	[SerializeField] private GameObject vip;
+	[SerializeField] GameObject vip;
 	public static GameObject VIP { get { return Instance.vip; } }
 
-	enum GameState
-	{
-		Play,
-		GameOver
-	};
+	[SerializeField] GameObject attackerPrefab;
+	[SerializeField] GameObject innocentPrefab;
 
+	[SerializeField] GameObject attackerSpawns;
+	[SerializeField] GameObject innocentSpawns;
+
+	enum GameState { Play, GameOver };
 	GameState state = GameState.Play;
-	private Coroutine waitAndRestartRoutine = null;
-	[SerializeField] private float restartDelay;
+
+	Coroutine waitAndRestartRoutine = null;
+	[SerializeField] float restartDelay;
+
+	int numAttackersKilled = 0;
+	[SerializeField] float minSpawnDelay;
+	[SerializeField] float maxSpawnDelay;
 
 	void Awake()
 	{
@@ -57,7 +63,10 @@ public class GameManager : MonoBehaviour
 			}
 			case Citizen.CitizenType.Attacker:
 			{
+				numAttackersKilled++;
 				// "Kill attackers adds more people"
+				SpawnCitizens(Mathf.Max(1, numAttackersKilled / 3), attackerSpawns.transform, attackerPrefab);
+				SpawnCitizens(Mathf.Max(1, numAttackersKilled), innocentSpawns.transform, innocentPrefab);
 				break;
 			}
 			case Citizen.CitizenType.VIP:
@@ -81,14 +90,30 @@ public class GameManager : MonoBehaviour
 				Debug.Log("Game over, an innocents life has been lost.");
 			}
 			state = GameState.GameOver;
-			waitAndRestartRoutine = StartCoroutine(WaitAndRestart(restartDelay));
+			waitAndRestartRoutine = StartCoroutine(waitThenCallback(restartDelay, () =>
+			{
+				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+				waitAndRestartRoutine = null;
+			}));
 		}
 	}
 
-	IEnumerator WaitAndRestart(float waitTimeSeconds)
+	void SpawnCitizens(int amount, Transform spawnPointsRoot, GameObject prefab)
+	{
+		for (int i = 0; i < amount; i++)
+		{
+			StartCoroutine(waitThenCallback(Random.Range(minSpawnDelay, maxSpawnDelay), () =>
+			{
+				Transform spawnPoint = spawnPointsRoot.GetChild(Random.Range(0, spawnPointsRoot.childCount - 1));
+				Citizen citizen = GameObject.Instantiate(prefab, spawnPoint.position, Quaternion.identity).GetComponent<Citizen>();
+				citizen.OnDeath += OnCitizenDied;
+			}));
+		}
+	}
+
+	private IEnumerator waitThenCallback(float waitTimeSeconds, System.Action callback)
 	{
 		yield return new WaitForSeconds(waitTimeSeconds);
-		waitAndRestartRoutine = null;
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		callback();
 	}
 }

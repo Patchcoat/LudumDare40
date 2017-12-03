@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class SelfDestruct : MonoBehaviour
 {
-	[SerializeField]
-	bool waitForParticleSystems;
-
-	[SerializeField]
-	float waitTimeSeconds = 0.0f;
+	[SerializeField] bool waitForParticleSystems;
+	[SerializeField] float waitTimeSeconds = 0.0f;
 
 	void Start()
 	{

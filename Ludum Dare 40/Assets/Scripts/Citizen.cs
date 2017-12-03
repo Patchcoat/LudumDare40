@@ -4,28 +4,21 @@ using UnityEngine;
 
 public class Citizen : MonoBehaviour
 {
-	[SerializeField] private float health;
+	[SerializeField] float health;
 
 	bool isAlive = true;
 	public bool IsAlive { get { return isAlive; } }
 
 	CitizenMovement movement = null;
+	
+    public delegate void OnDeathDelegate(Citizen selfRef);
+	public OnDeathDelegate OnDeath { get; set; }
 
-    public enum CitizenType
-    {
-        Innocent,
-        Attacker,
-        VIP
-    };
-
-    public delegate void MultiDelegate(Citizen selfRef);
-	public MultiDelegate OnDeath { get; set;}
-
-	[SerializeField]
-	private CitizenType type;
+    public enum CitizenType { Innocent, Attacker, VIP };
+	[SerializeField] CitizenType type;
 	public CitizenType Type { get { return type; } }
 
-	private void Awake()
+	void Awake()
 	{
 		movement = GetComponent<CitizenMovement>();
 	}
@@ -43,32 +36,33 @@ public class Citizen : MonoBehaviour
         }
     }
 
-        public void OnHit(float damage)
+    public void OnHit(float damage)
 	{
-		health -= damage;
-		if (health <= 0.0f)
+		if (isAlive)
 		{
-			isAlive = false;
-			movement.enabled = false;
-			if (OnDeath != null)
+			health -= damage;
+			if (health <= 0.0f)
 			{
-                Die();
-				OnDeath(this);
+				Die();
 			}
 		}
 	}
 
     void Die()
     {
-        movement.alive = false;
+		isAlive = false;
+		movement.alive = false;
+
         Component[] Rigidbodies;
         Component[] Spheres;
         Component[] Boxes;
         Component[] Capsules;
+
         Rigidbodies = GetComponentsInChildren<Rigidbody>();
         Spheres = GetComponentsInChildren<SphereCollider>();
         Boxes = GetComponentsInChildren<BoxCollider>();
         Capsules = GetComponentsInChildren<CapsuleCollider>();
+
         foreach (Rigidbody body in Rigidbodies)
         {
             body.useGravity = true;
@@ -86,7 +80,13 @@ public class Citizen : MonoBehaviour
         {
             collider.isTrigger = false;
         }
+
         GetComponent<CapsuleCollider>().isTrigger = true;
         GetComponent<SphereCollider>().isTrigger = true;
-    }
+
+		if (OnDeath != null)
+		{
+			OnDeath(this);
+		}
+	}
 }
