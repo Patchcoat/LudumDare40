@@ -1,3 +1,4 @@
+/[Ll]ibrary/
 Ludum Dare 40/[Ll]ibrary/
 Ludum Dare 40/[Tt]emp/
 Ludum Dare 40/[Oo]bj/
@@ -33,3 +34,4 @@ sysinfo.txt
 *.apk
 *.unitypackage
 assets/common/Thumbs.db
+*.info
