@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
@@ -49,12 +50,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
         private Rigidbody m_Rigidbody;
+        private Animator m_animator;
 
         // Use this for initialization
         private void Start()
         {
             m_CharacterController = GetComponent<CharacterController>();
             m_Camera = Camera.main;
+            m_animator = GetComponentInChildren<Animator>();
             m_OriginalCameraPosition = m_Camera.transform.localPosition;
             m_Zoomout = m_Camera.fieldOfView;
             m_StepCycle = 0f;
@@ -252,12 +255,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
         }
 
-        private void Fire()
+        IEnumerator Fire()
         {
             // Play firing sound
             m_AudioSource.PlayOneShot(m_FireSound);
+            // Play firing animation
+            m_animator.SetBool("Fire", true);
             // Preform raycast
-			Ray ray = m_Camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+            Ray ray = m_Camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
 			Debug.DrawRay(ray.origin, ray.direction, Color.red, 2.0f);
 
 			RaycastHit hit;
@@ -279,8 +284,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 					GameObject.Instantiate(m_BulletImpactPrefab, hit.point, Quaternion.identity);
 				}
 			}
-			
-
+            yield return new WaitForSeconds(0.1f);
+            //m_animator.SetBool("Fire", false);
         }
 
         private void Aim(bool aiming)
@@ -288,6 +293,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Camera.fieldOfView = (aiming ? m_ZoomFOV : m_Zoomout);
             m_IsAiming = aiming;
             m_MouseLook.isAiming = aiming;
+            m_animator.SetBool("Aim", aiming);
         }
 
         private void RotateView()
