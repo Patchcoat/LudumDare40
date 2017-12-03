@@ -17,7 +17,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		[SerializeField] private float m_ShotDamage;
         [SerializeField] private float m_ZoomFOV;
         [SerializeField] private float m_ZoomAimSpeed;
-        [SerializeField] private float m_CrosshairScale;
+		[SerializeField] private float m_ZoomSpeed;
+		[SerializeField] private float m_CrosshairScale;
         [SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_CrouchDeltaHeight;
         [SerializeField] private float m_RunSpeed;
@@ -97,7 +98,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
 				m_fireRoutine = StartCoroutine(Fire());
             }
-            
+
+			float targetZoom = m_IsAiming ? m_ZoomFOV : m_Zoomout;
+			if (m_Camera.fieldOfView != targetZoom)
+			{
+				m_Camera.fieldOfView = Mathf.Lerp(m_Camera.fieldOfView, targetZoom, Time.deltaTime * m_ZoomSpeed);
+			}
 
             if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
             {
@@ -289,7 +295,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void Aim(bool aiming)
         {
-            m_Camera.fieldOfView = (aiming ? m_ZoomFOV : m_Zoomout);
             m_IsAiming = aiming;
             m_MouseLook.isAiming = aiming;
             m_animator.SetBool("Aim", aiming);
