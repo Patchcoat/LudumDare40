@@ -61,6 +61,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_animator = GetComponentInChildren<Animator>();
             m_OriginalCameraPosition = m_Camera.transform.localPosition;
             m_Zoomout = m_Camera.fieldOfView;
+			m_ZoomFOV = 20f;
             m_StepCycle = 0f;
             m_NextStep = m_StepCycle/2f;
             m_Jumping = false;
@@ -288,7 +289,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void Aim(bool aiming)
         {
-            //m_Camera.fieldOfView = (aiming ? m_ZoomFOV : m_Zoomout);
+            m_Camera.fieldOfView = (aiming ? m_ZoomFOV : m_Zoomout);
             m_IsAiming = aiming;
             m_MouseLook.isAiming = aiming;
             m_animator.SetBool("Aim", aiming);
