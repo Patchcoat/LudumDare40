@@ -14,6 +14,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private bool m_IsAiming;
         [SerializeField] private float m_ShotForce;
 		[SerializeField] private float m_ShotDamage;
+        [SerializeField] private float m_ZoomFOV;
+        [SerializeField] private float m_ZoomAimSpeed;
         [SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_CrouchDeltaHeight;
         [SerializeField] private float m_RunSpeed;
@@ -33,6 +35,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jump;
         private float m_YRotation;
         private float m_StandHeight;
+        private float m_Zoomout;
         private Vector2 m_Input;
         private Vector3 m_MoveDir = Vector3.zero;
         private CharacterController m_CharacterController;
@@ -51,11 +54,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_CharacterController = GetComponent<CharacterController>();
             m_Camera = Camera.main;
             m_OriginalCameraPosition = m_Camera.transform.localPosition;
+            m_Zoomout = m_Camera.fieldOfView;
             m_StepCycle = 0f;
             m_NextStep = m_StepCycle/2f;
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+            m_MouseLook.ZoomedSensitivity = new Vector2(m_ZoomAimSpeed, m_ZoomAimSpeed);
             m_StandHeight = GetComponent<CharacterController>().height;
             m_Rigidbody = GetComponent<Rigidbody>();
         }
@@ -279,7 +284,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void Aim(bool aiming)
         {
-            m_Camera.fieldOfView = (aiming ? 20 : 60);
+            m_Camera.fieldOfView = (aiming ? m_ZoomFOV : m_Zoomout);
+            m_IsAiming = aiming;
+            m_MouseLook.isAiming = aiming;
         }
 
         private void RotateView()

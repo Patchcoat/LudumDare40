@@ -219,6 +219,8 @@ MonoBehaviour:
   m_IsAiming: 0
   m_ShotForce: 1000
   m_ShotDamage: 100
+  m_ZoomFOV: 5
+  m_ZoomAimSpeed: 0.5
   m_WalkSpeed: 5
   m_CrouchDeltaHeight: 0.6
   m_RunSpeed: 10
@@ -229,7 +231,10 @@ MonoBehaviour:
   m_MouseLook:
     XSensitivity: 2
     YSensitivity: 2
+    ZoomedSensitivity: {x: 0.5, y: 0.5}
+    UnZoomedSensitivity: {x: 2, y: 2}
     clampVerticalRotation: 1
+    isAiming: 0
     MinimumX: -90
     MaximumX: 90
     smooth: 0

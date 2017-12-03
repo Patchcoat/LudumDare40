@@ -8,7 +8,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
     {
         public float XSensitivity = 2f;
         public float YSensitivity = 2f;
+        public Vector2 ZoomedSensitivity = new Vector2(0.5f, 0.5f);
+        public Vector2 UnZoomedSensitivity = new Vector2(2f, 2f);
         public bool clampVerticalRotation = true;
+        public bool isAiming = false;
         public float MinimumX = -90F;
         public float MaximumX = 90F;
         public bool smooth;
@@ -29,8 +32,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         public void LookRotation(Transform character, Transform camera)
         {
-            float yRot = Input.GetAxis("Mouse X") * XSensitivity;
-            float xRot = Input.GetAxis("Mouse Y") * YSensitivity;
+            float yRot = Input.GetAxis("Mouse X") * (isAiming ? ZoomedSensitivity.x : UnZoomedSensitivity.x);
+            float xRot = Input.GetAxis("Mouse Y") * (isAiming ? ZoomedSensitivity.y : UnZoomedSensitivity.y);
 
             m_CharacterTargetRot *= Quaternion.Euler (0f, yRot, 0f);
             m_CameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
