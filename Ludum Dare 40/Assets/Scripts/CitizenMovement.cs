@@ -14,9 +14,12 @@ public class CitizenMovement : MonoBehaviour {
     bool walking;
     float waitCurrent;
     float movementSpeed;
+	bool evading;
     NavMeshAgent nav;
-	Transform targetTransform = null;
 	Citizen.CitizenType citizenType;
+
+	Transform targetTransform = null;
+	Vector3 spookyPosition;
 
 	// Use this for initialization
 	void Start () {
@@ -25,7 +28,8 @@ public class CitizenMovement : MonoBehaviour {
         destination = DirectionalNavSphere(transform.position, UnityEngine.Random.insideUnitSphere, RandomPathSearchDistance, -1);
         walking = false;
         alive = true;
-        waitCurrent = 0;//Random.Range(waitMin, waitMax);
+		evading = false;
+		waitCurrent = 0;//Random.Range(waitMin, waitMax);
         movementSpeed = 0;
 		citizenType = GetComponent<Citizen>().Type;
 		if (citizenType == Citizen.CitizenType.Attacker)
@@ -43,6 +47,7 @@ public class CitizenMovement : MonoBehaviour {
             return;
         }
         movementSpeed = nav.velocity.magnitude;
+		if (evading) movementSpeed *= 2.0f;
         animator.SetFloat("Speed", movementSpeed);
         if (movementSpeed >= 0.1)
         {
@@ -57,7 +62,8 @@ public class CitizenMovement : MonoBehaviour {
             waitCurrent -= Time.deltaTime;
         } else if ((walking == false && waitCurrent <= 0) || citizenType == Citizen.CitizenType.Attacker)
         {
-			Vector3 direction = targetTransform != null ? (targetTransform.position - transform.position).normalized  : UnityEngine.Random.insideUnitSphere;
+			Vector3 direction = targetTransform != null ? (targetTransform.position - transform.position).normalized  : 
+				evading ? (spookyPosition - transform.position).normalized : UnityEngine.Random.insideUnitSphere;
 			destination = DirectionalNavSphere(transform.position, direction, RandomPathSearchDistance, -1);
             nav.SetDestination(destination);
             waitCurrent = 0;
@@ -82,6 +88,7 @@ public class CitizenMovement : MonoBehaviour {
 				targetTransform.SendMessage("OnHit", 100);
 			}
 		}
+		targetTransform = null;
 	}
 
 	public static Vector3 DirectionalNavSphere(Vector3 origin, Vector3 direction, float distance, int layermask)
@@ -90,5 +97,24 @@ public class CitizenMovement : MonoBehaviour {
 		NavMeshHit navHit;
 		NavMesh.SamplePosition(walkTargetPosition, out navHit, distance, layermask);
 		return navHit.position;
+	}
+
+	public void BecomeSpooked(Vector3 spookLocation)
+	{
+		spookyPosition = spookLocation;
+		evading = true;
+		Vector3 direction = (transform.position - spookyPosition).normalized;
+		destination = DirectionalNavSphere(transform.position, direction, RandomPathSearchDistance, -1);
+		nav.SetDestination(destination);
+		waitCurrent = 0;
+		walking = true;
+
+		waitThenCallback(5.0f, () => { evading = false; });
+	}
+
+	private IEnumerator waitThenCallback(float waitTimeSeconds, System.Action callback)
+	{
+		yield return new WaitForSeconds(waitTimeSeconds);
+		callback();
 	}
 }

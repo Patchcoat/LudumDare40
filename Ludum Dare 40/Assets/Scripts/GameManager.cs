@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
 	[SerializeField] float minSpawnDelay;
 	[SerializeField] float maxSpawnDelay;
 
+	public delegate void OnSpookDelegate(Vector3 spookLocation);
+	public OnSpookDelegate OnSpook { get; set; }
+
 	void Awake()
 	{
 		if (Instance != null && Instance != this)
@@ -44,6 +47,7 @@ public class GameManager : MonoBehaviour
 		{
 			Citizen citizen = citizenObjects[i].GetComponent<Citizen>();
 			citizen.OnDeath += OnCitizenDied;
+			OnSpook += citizen.OnSpooked;
 		}
 	}
 	
@@ -75,6 +79,8 @@ public class GameManager : MonoBehaviour
 				break;
 			}
 		}
+
+		OnSpook(citizen.transform.position);
 	}
 
 	void GameOver(Citizen.CitizenType reason)
@@ -107,6 +113,7 @@ public class GameManager : MonoBehaviour
 				Transform spawnPoint = spawnPointsRoot.GetChild(Random.Range(0, spawnPointsRoot.childCount - 1));
 				Citizen citizen = GameObject.Instantiate(prefab, spawnPoint.position, Quaternion.identity).GetComponent<Citizen>();
 				citizen.OnDeath += OnCitizenDied;
+				OnSpook += citizen.OnSpooked;
 			}));
 		}
 	}

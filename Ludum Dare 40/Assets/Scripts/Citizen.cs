@@ -89,4 +89,9 @@ public class Citizen : MonoBehaviour
 			OnDeath(this);
 		}
 	}
+
+	public void OnSpooked(Vector3 spookLocation)
+	{
+		movement.BecomeSpooked(spookLocation);
+	}
 }
