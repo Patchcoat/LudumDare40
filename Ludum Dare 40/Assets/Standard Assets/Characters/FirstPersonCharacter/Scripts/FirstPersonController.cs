@@ -32,7 +32,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
         [SerializeField] private AudioClip m_FireSound;
 		[SerializeField] private GameObject m_BulletImpactPrefab;
-        [SerializeField] private Texture2D m_CrosshairTexture;
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -259,8 +258,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             // Play firing sound
             m_AudioSource.PlayOneShot(m_FireSound);
-            // Play firing animation
-            m_animator.SetBool("Fire", true);
             // Preform raycast
             Ray ray = m_Camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
 			Debug.DrawRay(ray.origin, ray.direction, Color.red, 2.0f);
