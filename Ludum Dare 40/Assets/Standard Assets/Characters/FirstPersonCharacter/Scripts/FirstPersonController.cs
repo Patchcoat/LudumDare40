@@ -16,6 +16,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		[SerializeField] private float m_ShotDamage;
         [SerializeField] private float m_ZoomFOV;
         [SerializeField] private float m_ZoomAimSpeed;
+        [SerializeField] private float m_CrosshairScale;
         [SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_CrouchDeltaHeight;
         [SerializeField] private float m_RunSpeed;
@@ -30,8 +31,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
         [SerializeField] private AudioClip m_FireSound;
 		[SerializeField] private GameObject m_BulletImpactPrefab;
+        [SerializeField] private Texture2D m_CrosshairTexture;
 
-		private Camera m_Camera;
+        private Camera m_Camera;
         private bool m_Jump;
         private float m_YRotation;
         private float m_StandHeight;
@@ -104,7 +106,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
         }
-
 
         private void PlayLandingSound()
         {
