@@ -8,6 +8,7 @@ public class CitizenMovement : MonoBehaviour {
     [SerializeField] private float waitMax;
     [SerializeField] private float waitMin;
     [SerializeField] private float RandomPathSearchDistance;
+    public bool alive;
     Animator animator;
     Vector3 destination;
     bool walking;
@@ -23,6 +24,7 @@ public class CitizenMovement : MonoBehaviour {
         nav = GetComponent<NavMeshAgent>();
         destination = DirectionalNavSphere(transform.position, UnityEngine.Random.insideUnitSphere, RandomPathSearchDistance, -1);
         walking = false;
+        alive = true;
         waitCurrent = 0;//Random.Range(waitMin, waitMax);
         movementSpeed = 0;
 		citizenType = GetComponent<Citizen>().Type;
@@ -34,6 +36,12 @@ public class CitizenMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (!alive /*&& nav.enabled == true*/) // I commented out this because nav.SetDestination produced errors otherwise
+        {
+            nav.enabled = false;
+            animator.enabled = false;
+            return;
+        }
         movementSpeed = nav.velocity.magnitude;
         animator.SetFloat("Speed", movementSpeed);
         if (movementSpeed >= 0.1)
