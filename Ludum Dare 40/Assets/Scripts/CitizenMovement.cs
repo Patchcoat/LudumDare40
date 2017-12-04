@@ -44,6 +44,8 @@ public class CitizenMovement : MonoBehaviour {
 		{
             nav.enabled = false;
             animator.enabled = false;
+            GetComponent<CapsuleCollider>().enabled = false;
+            GetComponent<SphereCollider>().enabled = false;
             return;
         }
 	

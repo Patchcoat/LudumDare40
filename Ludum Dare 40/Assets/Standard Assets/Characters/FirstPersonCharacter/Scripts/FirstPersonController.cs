@@ -289,7 +289,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				}
 			}
             yield return new WaitForSeconds(0.1f);
-			//m_animator.SetBool("Fire", false);
 			m_fireRoutine = null;
 		}
 

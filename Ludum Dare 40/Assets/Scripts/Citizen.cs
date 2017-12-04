@@ -5,8 +5,14 @@ using UnityEngine;
 public class Citizen : MonoBehaviour
 {
 	[SerializeField] float health;
+    [SerializeField] float despawnTime;
+    [SerializeField] float rigorMortisTime;
 
-	bool isAlive = true;
+    bool isAlive = true;
+    bool frozen = false;
+    float dissolve = 0;
+    float timeDead = 0;
+    //Material material;
 	public bool IsAlive { get { return isAlive; } }
 
 	CitizenMovement movement = null;
@@ -25,7 +31,7 @@ public class Citizen : MonoBehaviour
 
 	void Start ()
 	{
-		
+        //material = GetComponentInChildren<Renderer>().material;
 	}
 
 	void Update ()
@@ -34,11 +40,28 @@ public class Citizen : MonoBehaviour
         {
             Die();
         }
+        if (!isAlive)
+        {
+            timeDead += Time.deltaTime;
+            if (timeDead >= despawnTime)
+            {
+                Destroy(gameObject);
+            }
+            /*if (despawnTime - timeDead <= 1)
+            {
+                dissolve += Time.deltaTime;
+                material.SetFloat("Slice Amount", dissolve);
+            }*/
+            if (timeDead > rigorMortisTime && !frozen)
+            {
+                Freeze();
+            }
+        }
     }
 
     public void OnHit(float damage)
 	{
-		if (isAlive)
+        if (isAlive)
 		{
 			health -= damage;
 			if (health <= 0.0f)
@@ -70,25 +93,37 @@ public class Citizen : MonoBehaviour
         }
         foreach (SphereCollider collider in Spheres)
         {
-            collider.isTrigger = false;
+            collider.enabled = true;
         }
         foreach (BoxCollider collider in Boxes)
         {
-            collider.isTrigger = false;
+            collider.enabled = true;
         }
         foreach (CapsuleCollider collider in Capsules)
         {
-            collider.isTrigger = false;
+            collider.enabled = true;
         }
 
-        GetComponent<CapsuleCollider>().isTrigger = true;
-        GetComponent<SphereCollider>().isTrigger = true;
+        //GetComponent<CapsuleCollider>().enabled = false;
+        //GetComponent<SphereCollider>().enabled = false;
 
 		if (OnDeath != null)
 		{
 			OnDeath(this);
 		}
 	}
+
+    void Freeze()
+    {
+        Component[] Rigidbodies;
+        Rigidbodies = GetComponentsInChildren<Rigidbody>();
+
+        foreach (Rigidbody body in Rigidbodies)
+        {
+            body.useGravity = false;
+            body.isKinematic = true;
+        }
+    }
 
 	public void OnSpooked(Vector3 spookLocation)
 	{
