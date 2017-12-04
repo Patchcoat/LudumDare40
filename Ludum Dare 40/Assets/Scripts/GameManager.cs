@@ -42,11 +42,13 @@ public class GameManager : MonoBehaviour
 
 	void Start ()
 	{
-		GameObject[] citizenObjects = GameObject.FindGameObjectsWithTag("Citizen");
+		GameObject[] citizenObjects = GameObject.FindGameObjectsWithTag("CitizenP");
 		for (int i = 0; i < citizenObjects.Length; i++)
 		{
-			Citizen citizen = citizenObjects[i].GetComponent<Citizen>();
-			citizen.OnDeath += OnCitizenDied;
+			Citizen citizen = citizenObjects[i].transform.root.gameObject.GetComponent<Citizen>();
+            if (citizen == null)
+                continue;
+            citizen.OnDeath += OnCitizenDied;
 			OnSpook += citizen.OnSpooked;
 		}
 	}
