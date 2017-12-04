@@ -52,9 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vip: {fileID: 0}
-  attackerPrefab: {fileID: 1403898900800464, guid: f02bdbee220d9b248890ff1161eae958,
+  attackerPrefab: {fileID: 1669065583702070, guid: fea3ad4f09425844cb3f75c9027c6efb,
     type: 2}
-  innocentPrefab: {fileID: 1961650403340034, guid: ddac58616174eb64681c22e9bfdc3073,
+  innocentPrefab: {fileID: 1585588609578836, guid: d8a4a84f5c77c7a4b8d63513084fe3d2,
     type: 2}
   attackerSpawns: {fileID: 0}
   innocentSpawns: {fileID: 0}
