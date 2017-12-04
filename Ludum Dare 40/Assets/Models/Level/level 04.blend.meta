@@ -1,0 +1,169 @@
+fileFormatVersion: 2
+guid: 98abb771f30631d45b77523ada9d6041
+timeCreated: 1512358870
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: coblestone
+    100002: leafs
+    100004: //RootNode
+    100006: Plane
+    100008: skyscrapers
+    100010: skyscrapers_roof_bottom
+    100012: streets
+    100014: warehouse
+    400000: coblestone
+    400002: leafs
+    400004: //RootNode
+    400006: Plane
+    400008: skyscrapers
+    400010: skyscrapers_roof_bottom
+    400012: streets
+    400014: warehouse
+    2300000: coblestone
+    2300002: leafs
+    2300004: Plane
+    2300006: skyscrapers
+    2300008: skyscrapers_roof_bottom
+    2300010: streets
+    2300012: warehouse
+    3300000: coblestone
+    3300002: leafs
+    3300004: Plane
+    3300006: skyscrapers
+    3300008: skyscrapers_roof_bottom
+    3300010: streets
+    3300012: warehouse
+    4300000: skyscrapers
+    4300002: skyscrapers_roof_bottom
+    4300004: warehouse
+    4300006: coblestone
+    4300008: streets
+    4300010: Plane
+    4300012: leafs
+    7400000: Default Take
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: asphalt__cobblestones_png
+    second: {fileID: 2100000, guid: bcb415f110b786c48b494f29ecccd2a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: buildings__wall1_png
+    second: {fileID: 2100000, guid: e211797c49a719b4f863aa8011d4457e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: buildings_window__wall1_png
+    second: {fileID: 2100000, guid: e211797c49a719b4f863aa8011d4457e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: buildings_window__window_a_png
+    second: {fileID: 2100000, guid: addd9f01793d0284eb3a5bb3a7afc75b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: green__leafs_a_png
+    second: {fileID: 2100000, guid: d2ae86d911167ff498380f607ade7bbc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: street__walksstones_png
+    second: {fileID: 2100000, guid: 8eca36d11eded5349a8bdb9a0b44186f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: warehouse_doors__trunk_png
+    second: {fileID: 2100000, guid: a8a2ab6dec6b52d4f846c0450825e99b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: warehouse_rooftop__wall1_png
+    second: {fileID: 2100000, guid: e211797c49a719b4f863aa8011d4457e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: warehouse_walls__wall1_png
+    second: {fileID: 2100000, guid: e211797c49a719b4f863aa8011d4457e, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
