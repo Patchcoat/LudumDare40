@@ -36,10 +36,6 @@ public class Citizen : MonoBehaviour
 
 	void Update ()
 	{
-        if (Input.GetButtonDown("Fire3"))
-        {
-            Die();
-        }
         if (!isAlive)
         {
             timeDead += Time.deltaTime;
@@ -94,14 +90,17 @@ public class Citizen : MonoBehaviour
         foreach (SphereCollider collider in Spheres)
         {
             collider.enabled = true;
+            collider.isTrigger = false;
         }
         foreach (BoxCollider collider in Boxes)
         {
             collider.enabled = true;
+            collider.isTrigger = false;
         }
         foreach (CapsuleCollider collider in Capsules)
         {
             collider.enabled = true;
+            collider.isTrigger = false;
         }
 
         //GetComponent<CapsuleCollider>().enabled = false;
