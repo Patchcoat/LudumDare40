@@ -13202,10 +13202,10 @@ MonoBehaviour:
     lockCursor: 1
   m_StepInterval: 5
   m_FootstepSounds:
-  - {fileID: 8300000, guid: 08b2305e144bd864fbb61da6e797e080, type: 3}
-  - {fileID: 8300000, guid: 49a05c3a3f2acf345bb975ec58102c49, type: 3}
-  m_JumpSound: {fileID: 8300000, guid: 38023b34045e7754496e8a7e087745a5, type: 3}
-  m_LandSound: {fileID: 8300000, guid: 5b572e18042bb9b468d9607a69b2a969, type: 3}
+  - {fileID: 8300000, guid: 3b7f1fe8bcde7ef4ea599a4a891cda74, type: 3}
+  - {fileID: 8300000, guid: f43e97e237351de4f8f4b1ad165ae782, type: 3}
+  m_JumpSound: {fileID: 8300000, guid: eb718306c333b8f4993ca6e1e194bbfe, type: 3}
+  m_LandSound: {fileID: 8300000, guid: bb417533f70fc044d86be66cf17750e3, type: 3}
   m_FireSound: {fileID: 8300000, guid: 7fd85304f9b5b274ca1a1e417926b333, type: 3}
   m_BulletImpactPrefab: {fileID: 1821341702598272, guid: e3558ffaf9459b24d9ded20b612c87e6,
     type: 2}
