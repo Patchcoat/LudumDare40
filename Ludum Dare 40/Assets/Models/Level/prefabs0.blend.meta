@@ -1,0 +1,324 @@
+fileFormatVersion: 2
+guid: 070ec646285a7684a9a9da81642f6863
+timeCreated: 1512377437
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: big_tree_a
+    100002: dep_comp_a
+    100004: leafs_001
+    100006: massive_tree_a
+    100008: medium_tree_a
+    100010: metro_a
+    100012: pot_a
+    100014: //RootNode
+    100016: skyscrapper_a
+    100018: skyscrapper_b
+    100020: stone_bench_001
+    100022: street_lamp_a
+    100024: Text
+    100026: Text_001
+    100028: Text_002
+    100030: tree_crown_a
+    100032: tree_skirt_a
+    100034: tree_top_a
+    100036: warehouse_a
+    100038: warehouse_b
+    400000: big_tree_a
+    400002: dep_comp_a
+    400004: leafs_001
+    400006: massive_tree_a
+    400008: medium_tree_a
+    400010: metro_a
+    400012: pot_a
+    400014: //RootNode
+    400016: skyscrapper_a
+    400018: skyscrapper_b
+    400020: stone_bench_001
+    400022: street_lamp_a
+    400024: Text
+    400026: Text_001
+    400028: Text_002
+    400030: tree_crown_a
+    400032: tree_skirt_a
+    400034: tree_top_a
+    400036: warehouse_a
+    400038: warehouse_b
+    2300000: big_tree_a
+    2300002: dep_comp_a
+    2300004: leafs_001
+    2300006: massive_tree_a
+    2300008: medium_tree_a
+    2300010: metro_a
+    2300012: pot_a
+    2300014: skyscrapper_a
+    2300016: skyscrapper_b
+    2300018: stone_bench_001
+    2300020: street_lamp_a
+    2300022: Text
+    2300024: Text_001
+    2300026: Text_002
+    2300028: tree_crown_a
+    2300030: tree_skirt_a
+    2300032: tree_top_a
+    2300034: warehouse_a
+    2300036: warehouse_b
+    3300000: big_tree_a
+    3300002: dep_comp_a
+    3300004: leafs_001
+    3300006: massive_tree_a
+    3300008: medium_tree_a
+    3300010: metro_a
+    3300012: pot_a
+    3300014: skyscrapper_a
+    3300016: skyscrapper_b
+    3300018: stone_bench_001
+    3300020: street_lamp_a
+    3300022: Text
+    3300024: Text_001
+    3300026: Text_002
+    3300028: tree_crown_a
+    3300030: tree_skirt_a
+    3300032: tree_top_a
+    3300034: warehouse_a
+    3300036: warehouse_b
+    4300000: massive_tree_a
+    4300002: big_tree_a
+    4300004: tree_crown_a
+    4300006: tree_skirt_a
+    4300008: tree_top_a
+    4300010: medium_tree_a
+    4300012: pot_a
+    4300014: stone_bench_001
+    4300016: Text_002
+    4300018: Text_001
+    4300020: Text
+    4300022: street_lamp_a
+    4300024: dep_comp_a
+    4300026: metro_a
+    4300028: skyscrapper_b
+    4300030: skyscrapper_a
+    4300032: warehouse_b
+    4300034: warehouse_a
+    4300036: leafs_001
+    7400000: Default Take
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bark
+    second: {fileID: 2100000, guid: 0f0974b697b04c545b4b1dabe1ffd2b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bark__trunk_png
+    second: {fileID: 2100000, guid: a8a2ab6dec6b52d4f846c0450825e99b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: building_window_002__wall1_png_005
+    second: {fileID: 2100000, guid: e211797c49a719b4f863aa8011d4457e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: building_window_002__window_a_png_004
+    second: {fileID: 2100000, guid: addd9f01793d0284eb3a5bb3a7afc75b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: building_window__wall1_png_003
+    second: {fileID: 2100000, guid: e211797c49a719b4f863aa8011d4457e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: building_window__window_a_png_002
+    second: {fileID: 2100000, guid: addd9f01793d0284eb3a5bb3a7afc75b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dep_comp_entrance__trunk_png_001
+    second: {fileID: 2100000, guid: a8a2ab6dec6b52d4f846c0450825e99b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dep_comp_rooftop__wall1_png_001
+    second: {fileID: 2100000, guid: e211797c49a719b4f863aa8011d4457e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dep_comp_wall__wall1_png_001
+    second: {fileID: 2100000, guid: e211797c49a719b4f863aa8011d4457e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dep_comp_window__window_a_png
+    second: {fileID: 2100000, guid: addd9f01793d0284eb3a5bb3a7afc75b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dirt__dirt_png
+    second: {fileID: 2100000, guid: f87061edd60f1c74a9a6e7fe5bbf0c6e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lamp
+    second: {fileID: 2100000, guid: a80a18e38d5991e4794aeb9ae641463d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: leaves__leafs_a_png
+    second: {fileID: 2100000, guid: d2ae86d911167ff498380f607ade7bbc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metro_entrance__trunk_png_002
+    second: {fileID: 2100000, guid: a8a2ab6dec6b52d4f846c0450825e99b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metro_wall_1__wall1_png_002
+    second: {fileID: 2100000, guid: e211797c49a719b4f863aa8011d4457e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metro_wall_2__window_a_png_001
+    second: {fileID: 2100000, guid: addd9f01793d0284eb3a5bb3a7afc75b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pot__pot_b_png
+    second: {fileID: 2100000, guid: 40cd3854a52eacf4380b06815e2e5cae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: skycraper_002__wall1_png_005
+    second: {fileID: 2100000, guid: e211797c49a719b4f863aa8011d4457e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: skycraper__wall1_png_003
+    second: {fileID: 2100000, guid: e211797c49a719b4f863aa8011d4457e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stone__stone_png
+    second: {fileID: 2100000, guid: 6bcdaa50480d4a04989b56ec0651cb2e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trunk__pot_b_png
+    second: {fileID: 2100000, guid: 40cd3854a52eacf4380b06815e2e5cae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: unnamed
+    second: {fileID: 2100000, guid: 1fe8d1ea00416b74e8857de8a5171c60, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: warehouse_entrance_001__trunk_png_004
+    second: {fileID: 2100000, guid: a8a2ab6dec6b52d4f846c0450825e99b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: warehouse_entrance__trunk_png_003
+    second: {fileID: 2100000, guid: a8a2ab6dec6b52d4f846c0450825e99b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: warehouse_rooftop_001__wall1_png_007
+    second: {fileID: 2100000, guid: e211797c49a719b4f863aa8011d4457e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: warehouse_rooftop__wall1_png_006
+    second: {fileID: 2100000, guid: e211797c49a719b4f863aa8011d4457e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: warehouse_walls_001__wall1_png_007
+    second: {fileID: 2100000, guid: e211797c49a719b4f863aa8011d4457e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: warehouse_walls__wall1_png_006
+    second: {fileID: 2100000, guid: e211797c49a719b4f863aa8011d4457e, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

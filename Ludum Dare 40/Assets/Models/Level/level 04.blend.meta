@@ -13,6 +13,9 @@ ModelImporter:
     100010: skyscrapers_roof_bottom
     100012: streets
     100014: warehouse
+    100016: leafs_001
+    100018: skyscrapers_roof_bottom_001
+    100020: streets_002
     400000: coblestone
     400002: leafs
     400004: //RootNode
@@ -21,6 +24,9 @@ ModelImporter:
     400010: skyscrapers_roof_bottom
     400012: streets
     400014: warehouse
+    400016: leafs_001
+    400018: skyscrapers_roof_bottom_001
+    400020: streets_002
     2300000: coblestone
     2300002: leafs
     2300004: Plane
@@ -28,6 +34,9 @@ ModelImporter:
     2300008: skyscrapers_roof_bottom
     2300010: streets
     2300012: warehouse
+    2300014: leafs_001
+    2300016: skyscrapers_roof_bottom_001
+    2300018: streets_002
     3300000: coblestone
     3300002: leafs
     3300004: Plane
@@ -35,6 +44,9 @@ ModelImporter:
     3300008: skyscrapers_roof_bottom
     3300010: streets
     3300012: warehouse
+    3300014: leafs_001
+    3300016: skyscrapers_roof_bottom_001
+    3300018: streets_002
     4300000: skyscrapers
     4300002: skyscrapers_roof_bottom
     4300004: warehouse
@@ -42,6 +54,17 @@ ModelImporter:
     4300008: streets
     4300010: Plane
     4300012: leafs
+    4300014: leafs_001
+    4300016: streets_002
+    4300018: skyscrapers_roof_bottom_001
+    6400000: coblestone
+    6400002: leafs
+    6400004: leafs_001
+    6400006: Plane
+    6400008: skyscrapers_roof_bottom
+    6400010: skyscrapers_roof_bottom_001
+    6400012: streets
+    6400014: streets_002
     7400000: Default Take
     9500000: //RootNode
   externalObjects:
@@ -70,6 +93,26 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: green__leafs_a_png
     second: {fileID: 2100000, guid: d2ae86d911167ff498380f607ade7bbc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: leaves__leafs_a_png
+    second: {fileID: 2100000, guid: d2ae86d911167ff498380f607ade7bbc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metro_wall_2__wall1_png
+    second: {fileID: 2100000, guid: 8ef293bc8608c024f8956f6d77d9c802, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metro_wall_2__window_a_png
+    second: {fileID: 2100000, guid: addd9f01793d0284eb3a5bb3a7afc75b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: street__cobblestones_png
+    second: {fileID: 2100000, guid: bcb415f110b786c48b494f29ecccd2a4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -121,7 +164,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -142,7 +185,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
