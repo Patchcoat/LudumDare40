@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
 	public static GameObject VIP { get { return Instance.vip; } }
 
     [SerializeField] GameObject gui;
-    public static GameObject GUI { get { return Instance.gui; } }
+    //public static GameObject GUI { get { return Instance.gui; } }
+    GameUI GUIScript;
 
     [SerializeField] GameObject attackerPrefab;
 	[SerializeField] GameObject innocentPrefab;
@@ -45,7 +46,8 @@ public class GameManager : MonoBehaviour
 
 	void Start ()
 	{
-		GameObject[] citizenObjects = GameObject.FindGameObjectsWithTag("CitizenP");
+        GUIScript = gui.GetComponent<GameUI>();
+        GameObject[] citizenObjects = GameObject.FindGameObjectsWithTag("CitizenP");
 		for (int i = 0; i < citizenObjects.Length; i++)
 		{
 			Citizen citizen = citizenObjects[i].transform.root.gameObject.GetComponent<Citizen>();
@@ -79,7 +81,7 @@ public class GameManager : MonoBehaviour
 				// "Kill attackers adds more people"
 				SpawnCitizens(Mathf.Max(1, numAttackersKilled / 3), attackerSpawns.transform, attackerPrefab);
 				SpawnCitizens(Mathf.Max(1, numAttackersKilled), innocentSpawns.transform, innocentPrefab);
-                
+                GUIScript.UpdateScore(numAttackersKilled);
 				break;
 			}
 			case Citizen.CitizenType.VIP:
@@ -98,19 +100,22 @@ public class GameManager : MonoBehaviour
 		{
 			if (reason == Citizen.CitizenType.VIP)
 			{
-				Debug.Log("Game over, they can't keep getting away with it!");
+                GUIScript.UpdateReason("The VIP has died");
+                Debug.Log("Game over, they can't keep getting away with it!");
 			}
 			else
 			{
-				Debug.Log("Game over, an innocents life has been lost.");
+                GUIScript.UpdateReason("An innocent's life has been lost");
+                Debug.Log("Game over, an innocents life has been lost.");
 			}
 			state = GameState.GameOver;
-			waitAndRestartRoutine = StartCoroutine(waitThenCallback(restartDelay, () =>
+            GUIScript.showGameOver();
+            /*waitAndRestartRoutine = StartCoroutine(waitThenCallback(restartDelay, () =>
 			{
 				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 				waitAndRestartRoutine = null;
-			}));
-		}
+			}));*/
+        }
 	}
 
 	void SpawnCitizens(int amount, Transform spawnPointsRoot, GameObject prefab)

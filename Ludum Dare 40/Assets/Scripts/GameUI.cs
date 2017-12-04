@@ -12,6 +12,7 @@ public class GameUI : MonoBehaviour {
 
     public float score = 0;
     public Text scoreText;
+    public Text reasonText;
 
     // Use this for initialization
     void Start () {
@@ -49,6 +50,11 @@ public class GameUI : MonoBehaviour {
     {
         score = newScore;
         scoreText.text = score.ToString();
+    }
+
+    public void UpdateReason(string newReason)
+    {
+        reasonText.text = newReason;
     }
 
 
@@ -91,6 +97,8 @@ public class GameUI : MonoBehaviour {
         {
             g.SetActive(true);
         }
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         hidePlay();
         hideGameOver();
     }
@@ -109,6 +117,8 @@ public class GameUI : MonoBehaviour {
         {
             g.SetActive(true);
         }
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         hidePaused();
         hideGameOver();
     }
@@ -121,13 +131,15 @@ public class GameUI : MonoBehaviour {
         }
     }
 
-    void showGameOver()
+    public void showGameOver()
     {
         foreach (GameObject g in gameOverObjects)
         {
             g.SetActive(true);
         }
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
         hidePaused();
-        hideGameOver();
+        hidePlay();
     }
 }

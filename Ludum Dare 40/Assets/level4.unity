@@ -1855,7 +1855,7 @@ GameObject:
   - component: {fileID: 773839476}
   m_Layer: 5
   m_Name: Text
-  m_TagString: ShowOnPause
+  m_TagString: ShowOnGameOver
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1929,7 +1929,7 @@ GameObject:
   - component: {fileID: 786247528}
   m_Layer: 5
   m_Name: Text
-  m_TagString: ShowOnPause
+  m_TagString: ShowOnGameOver
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2168,7 +2168,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1095668252}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.000061035156, y: -3.7999992, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3736867}
@@ -2176,8 +2176,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 200}
+  m_AnchoredPosition: {x: 0.000030518, y: -3.8}
+  m_SizeDelta: {x: 1120, y: 73.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1095668254
 MonoBehaviour:
@@ -2200,7 +2200,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: b3b47d208eadf9c4db63c64ddf5500ed, type: 3}
-    m_FontSize: 60
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -2396,7 +2396,6 @@ GameObject:
   - component: {fileID: 1172029753}
   - component: {fileID: 1172029756}
   - component: {fileID: 1172029755}
-  - component: {fileID: 1172029754}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -2417,13 +2416,6 @@ Transform:
   m_Father: {fileID: 1655966483}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &1172029754
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1172029752}
-  m_Enabled: 1
 --- !u!124 &1172029755
 Behaviour:
   m_ObjectHideFlags: 0
@@ -4201,6 +4193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   scoreText: {fileID: 415954298}
+  reasonText: {fileID: 1095668254}
 --- !u!1001 &2104312298
 Prefab:
   m_ObjectHideFlags: 0

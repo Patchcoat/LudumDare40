@@ -5,7 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class StartScreen : MonoBehaviour {
 
-	public void Play()
+    void Start()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void Play()
     {
         SceneManager.LoadScene(1);
     }
