@@ -52,8 +52,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vip: {fileID: 0}
-  attackerPrefab: {fileID: 1014927088439742, guid: f02bdbee220d9b248890ff1161eae958,
+  attackerPrefab: {fileID: 1403898900800464, guid: f02bdbee220d9b248890ff1161eae958,
     type: 2}
-  innocentPrefab: {fileID: 1109788643295064, guid: ddac58616174eb64681c22e9bfdc3073,
+  innocentPrefab: {fileID: 1961650403340034, guid: ddac58616174eb64681c22e9bfdc3073,
     type: 2}
+  attackerSpawns: {fileID: 0}
+  innocentSpawns: {fileID: 0}
   restartDelay: 5
+  minSpawnDelay: 0
+  maxSpawnDelay: 0
