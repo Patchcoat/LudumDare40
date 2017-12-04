@@ -44,6 +44,8 @@ public class CitizenMovement : MonoBehaviour {
 		{
             nav.enabled = false;
             animator.enabled = false;
+            GetComponent<CapsuleCollider>().enabled = false;
+            GetComponent<SphereCollider>().enabled = false;
             return;
         }
         movementSpeed = nav.velocity.magnitude;
@@ -83,6 +85,10 @@ public class CitizenMovement : MonoBehaviour {
 	{
 		if (citizenType == Citizen.CitizenType.Attacker)
 		{
+            //Animation animation = GetComponentInChildren<Animation>();
+            //animation["attack"].wrapMode = WrapMode.Once;
+            //animation.Play("attack");
+            //TODO get attacking animation to work
 			if (targetTransform.gameObject == GameManager.VIP)
 			{
 				targetTransform.SendMessage("OnHit", 100);

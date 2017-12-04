@@ -18,7 +18,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private float m_ZoomFOV;
         [SerializeField] private float m_ZoomAimSpeed;
 		[SerializeField] private float m_ZoomSpeed;
-		[SerializeField] private float m_CrosshairScale;
+        [SerializeField] private float m_recoilForce;
+        [SerializeField] private float m_CrosshairScale;
         [SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_CrouchDeltaHeight;
         [SerializeField] private float m_RunSpeed;
@@ -36,11 +37,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private Camera m_Camera;
         private bool m_Jump;
+        private bool m_isGrounded;
         private float m_YRotation;
         private float m_StandHeight;
         private float m_Zoomout;
         private Vector2 m_Input;
         private Vector3 m_MoveDir = Vector3.zero;
+        private Vector3 m_HitNormal;
         private CharacterController m_CharacterController;
         private CollisionFlags m_CollisionFlags;
         private bool m_PreviouslyGrounded;
@@ -160,7 +163,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_MoveDir += Physics.gravity*m_GravityMultiplier*Time.fixedDeltaTime;
             }
+            if (!m_isGrounded)
+            {
+                m_MoveDir.x += (1f - m_HitNormal.y) * m_HitNormal.x * (1f + 3f);
+                m_MoveDir.z += (1f - m_HitNormal.y) * m_HitNormal.z * (1f + 3f);
+            }
             m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
+            m_isGrounded = (Vector3.Angle(Vector3.up, m_HitNormal) <= m_CharacterController.slopeLimit);
 
             ProgressStepCycle(speed);
 
@@ -273,11 +282,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			Debug.DrawRay(ray.origin, ray.direction, Color.red, 2.0f);
 
 			RaycastHit hit;
-			if (Physics.Raycast(ray, out hit, 1000))
+			if (Physics.Raycast(ray, out hit, 1000, 1 << LayerMask.NameToLayer("Shootable")))
 			{
 				if (hit.collider.CompareTag("Citizen"))
 				{
-					hit.collider.gameObject.SendMessage("OnHit", m_ShotDamage);
+					hit.collider.transform.root.SendMessage("OnHit", m_ShotDamage);
 				}
 				if (hit.rigidbody != null)
 				{
@@ -289,8 +298,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				}
 			}
             yield return new WaitForSeconds(0.1f);
-			//m_animator.SetBool("Fire", false);
 			m_fireRoutine = null;
+            // Recoil
+            m_MouseLook.Recoil(m_Camera.transform, m_recoilForce);
 		}
 
         private void Aim(bool aiming)
@@ -308,6 +318,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
             Rigidbody body = hit.collider.attachedRigidbody;
+            m_HitNormal = hit.normal;
             //dont move the rigidbody if the character is on top of it
             if (m_CollisionFlags == CollisionFlags.Below)
             {

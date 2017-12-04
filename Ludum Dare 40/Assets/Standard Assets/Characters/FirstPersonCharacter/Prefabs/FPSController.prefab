@@ -13179,6 +13179,7 @@ MonoBehaviour:
   m_ZoomFOV: 20
   m_ZoomAimSpeed: 0.15
   m_ZoomSpeed: 15
+  m_recoilForce: 1
   m_CrosshairScale: 0
   m_WalkSpeed: 5
   m_CrouchDeltaHeight: 0.6
@@ -13201,10 +13202,10 @@ MonoBehaviour:
     lockCursor: 1
   m_StepInterval: 5
   m_FootstepSounds:
-  - {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
-  - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
-  m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
-  m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
+  - {fileID: 8300000, guid: 3b7f1fe8bcde7ef4ea599a4a891cda74, type: 3}
+  - {fileID: 8300000, guid: f43e97e237351de4f8f4b1ad165ae782, type: 3}
+  m_JumpSound: {fileID: 8300000, guid: eb718306c333b8f4993ca6e1e194bbfe, type: 3}
+  m_LandSound: {fileID: 8300000, guid: bb417533f70fc044d86be66cf17750e3, type: 3}
   m_FireSound: {fileID: 8300000, guid: 7fd85304f9b5b274ca1a1e417926b333, type: 3}
   m_BulletImpactPrefab: {fileID: 1821341702598272, guid: e3558ffaf9459b24d9ded20b612c87e6,
     type: 2}
