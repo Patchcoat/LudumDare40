@@ -16,6 +16,9 @@ ModelImporter:
     100016: leafs_001
     100018: skyscrapers_roof_bottom_001
     100020: streets_002
+    100022: hacienda
+    100024: sniper_nest
+    100026: trash
     400000: coblestone
     400002: leafs
     400004: //RootNode
@@ -27,6 +30,9 @@ ModelImporter:
     400016: leafs_001
     400018: skyscrapers_roof_bottom_001
     400020: streets_002
+    400022: hacienda
+    400024: sniper_nest
+    400026: trash
     2300000: coblestone
     2300002: leafs
     2300004: Plane
@@ -37,6 +43,9 @@ ModelImporter:
     2300014: leafs_001
     2300016: skyscrapers_roof_bottom_001
     2300018: streets_002
+    2300020: hacienda
+    2300022: sniper_nest
+    2300024: trash
     3300000: coblestone
     3300002: leafs
     3300004: Plane
@@ -47,6 +56,9 @@ ModelImporter:
     3300014: leafs_001
     3300016: skyscrapers_roof_bottom_001
     3300018: streets_002
+    3300020: hacienda
+    3300022: sniper_nest
+    3300024: trash
     4300000: skyscrapers
     4300002: skyscrapers_roof_bottom
     4300004: warehouse
@@ -57,6 +69,9 @@ ModelImporter:
     4300014: leafs_001
     4300016: streets_002
     4300018: skyscrapers_roof_bottom_001
+    4300020: hacienda
+    4300022: sniper_nest
+    4300024: trash
     6400000: coblestone
     6400002: leafs
     6400004: leafs_001
@@ -65,6 +80,9 @@ ModelImporter:
     6400010: skyscrapers_roof_bottom_001
     6400012: streets
     6400014: streets_002
+    6400016: hacienda
+    6400018: sniper_nest
+    6400020: trash
     7400000: Default Take
     9500000: //RootNode
   externalObjects:
@@ -107,7 +125,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: metro_wall_2__window_a_png
-    second: {fileID: 2100000, guid: addd9f01793d0284eb3a5bb3a7afc75b, type: 2}
+    second: {fileID: 2100000, guid: 28f322e95071b7f4fb35f6676c516df6, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
