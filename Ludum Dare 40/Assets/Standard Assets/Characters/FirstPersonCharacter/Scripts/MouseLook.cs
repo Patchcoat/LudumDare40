@@ -57,6 +57,26 @@ namespace UnityStandardAssets.Characters.FirstPerson
             UpdateCursorLock();
         }
 
+        public void Recoil(Transform camera, float recoil)
+        {
+            Debug.Log("Recoil");
+            m_CameraTargetRot *= Quaternion.Euler(-1, 0f, 0f);
+
+            if (clampVerticalRotation)
+                m_CameraTargetRot = ClampRotationAroundXAxis(m_CameraTargetRot);
+
+            //if (smooth)
+            //{
+                camera.localRotation = Quaternion.Slerp(camera.localRotation, m_CameraTargetRot,
+                    smoothTime * Time.deltaTime);
+            //}
+            //else
+            //{
+            //    camera.localRotation = m_CameraTargetRot;
+            //}
+            UpdateCursorLock();
+        }
+
         public void SetCursorLock(bool value)
         {
             lockCursor = value;

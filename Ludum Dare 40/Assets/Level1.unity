@@ -654,6 +654,11 @@ Prefab:
       propertyPath: field of view
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114339375025653144, guid: 49320f70378ad3540bfdb26abbba583b,
+        type: 2}
+      propertyPath: m_recoilForce
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 49320f70378ad3540bfdb26abbba583b, type: 2}
   m_IsPrefabParent: 0

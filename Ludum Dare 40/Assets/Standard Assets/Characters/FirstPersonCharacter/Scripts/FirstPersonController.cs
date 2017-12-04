@@ -18,7 +18,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private float m_ZoomFOV;
         [SerializeField] private float m_ZoomAimSpeed;
 		[SerializeField] private float m_ZoomSpeed;
-		[SerializeField] private float m_CrosshairScale;
+        [SerializeField] private float m_recoilForce;
+        [SerializeField] private float m_CrosshairScale;
         [SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_CrouchDeltaHeight;
         [SerializeField] private float m_RunSpeed;
@@ -290,6 +291,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			}
             yield return new WaitForSeconds(0.1f);
 			m_fireRoutine = null;
+            // Recoil
+            m_MouseLook.Recoil(m_Camera.transform, m_recoilForce);
 		}
 
         private void Aim(bool aiming)

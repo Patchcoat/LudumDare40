@@ -950,7 +950,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  despawnTime: 5
+  despawnTime: 10
+  rigorMortisTime: 9
   type: 2
 --- !u!114 &114681144364503182
 MonoBehaviour:

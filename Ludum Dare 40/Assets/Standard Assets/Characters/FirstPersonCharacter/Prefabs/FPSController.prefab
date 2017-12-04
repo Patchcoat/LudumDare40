@@ -13179,6 +13179,7 @@ MonoBehaviour:
   m_ZoomFOV: 20
   m_ZoomAimSpeed: 0.15
   m_ZoomSpeed: 15
+  m_recoilForce: 5
   m_CrosshairScale: 0
   m_WalkSpeed: 5
   m_CrouchDeltaHeight: 0.6
