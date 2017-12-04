@@ -59,7 +59,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         public void Recoil(Transform camera, float recoil)
         {
-            Debug.Log("Recoil");
             m_CameraTargetRot *= Quaternion.Euler(-recoil, 0f, 0f);
 
             if (clampVerticalRotation)
