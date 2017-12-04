@@ -7,6 +7,10 @@ TagManager:
   - Citizen
   - InnocentSpawn
   - AttackerSpawn
+  - CitizenP
+  - ShowOnPause
+  - ShowDuringPlay
+  - ShowOnGameOver
   layers:
   - Default
   - TransparentFX

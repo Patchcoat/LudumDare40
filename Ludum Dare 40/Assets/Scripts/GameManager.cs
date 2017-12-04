@@ -10,7 +10,10 @@ public class GameManager : MonoBehaviour
 	[SerializeField] GameObject vip;
 	public static GameObject VIP { get { return Instance.vip; } }
 
-	[SerializeField] GameObject attackerPrefab;
+    [SerializeField] GameObject gui;
+    public static GameObject GUI { get { return Instance.gui; } }
+
+    [SerializeField] GameObject attackerPrefab;
 	[SerializeField] GameObject innocentPrefab;
 
 	[SerializeField] GameObject attackerSpawns;
@@ -49,7 +52,10 @@ public class GameManager : MonoBehaviour
             if (citizen == null)
                 continue;
             citizen.OnDeath += OnCitizenDied;
-			OnSpook += citizen.OnSpooked;
+            if (citizen.Type != Citizen.CitizenType.Attacker)
+            {
+                OnSpook += citizen.OnSpooked;
+            }
 		}
 	}
 	
@@ -73,6 +79,7 @@ public class GameManager : MonoBehaviour
 				// "Kill attackers adds more people"
 				SpawnCitizens(Mathf.Max(1, numAttackersKilled / 3), attackerSpawns.transform, attackerPrefab);
 				SpawnCitizens(Mathf.Max(1, numAttackersKilled), innocentSpawns.transform, innocentPrefab);
+                
 				break;
 			}
 			case Citizen.CitizenType.VIP:
@@ -82,7 +89,7 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
-		OnSpook(citizen.transform.position);
+		//OnSpook(citizen.transform.position);
 	}
 
 	void GameOver(Citizen.CitizenType reason)
