@@ -110,11 +110,12 @@ public class GameManager : MonoBehaviour
 			}
 			state = GameState.GameOver;
             GUIScript.showGameOver();
-            /*waitAndRestartRoutine = StartCoroutine(waitThenCallback(restartDelay, () =>
+            GUIScript.Countdown(restartDelay);
+            waitAndRestartRoutine = StartCoroutine(waitThenCallback(restartDelay, () =>
 			{
 				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 				waitAndRestartRoutine = null;
-			}));*/
+			}));
         }
 	}
 

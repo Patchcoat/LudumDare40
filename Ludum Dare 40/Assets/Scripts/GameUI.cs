@@ -13,6 +13,9 @@ public class GameUI : MonoBehaviour {
     public float score = 0;
     public Text scoreText;
     public Text reasonText;
+    public Text countdownTimer;
+    float countdownTime;
+    bool countdown;
 
     // Use this for initialization
     void Start () {
@@ -40,9 +43,10 @@ public class GameUI : MonoBehaviour {
                 hidePaused();
             }
         }
-        if (Input.GetButtonUp("Fire3"))
+        if (countdown)
         {
-            UpdateScore(score+1);
+            countdownTime -= Time.deltaTime;
+            countdownTimer.text = ((int)countdownTime).ToString();
         }
     }
 
@@ -81,6 +85,12 @@ public class GameUI : MonoBehaviour {
     public void Restart()
     {
         Application.LoadLevel(Application.loadedLevel);
+    }
+
+    public void Countdown(float time)
+    {
+        countdown = true;
+        countdownTime = time;
     }
 
     void hidePaused()
