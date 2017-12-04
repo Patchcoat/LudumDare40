@@ -46,8 +46,8 @@ public class CitizenMovement : MonoBehaviour {
             animator.enabled = false;
             return;
         }
-	
         movementSpeed = nav.velocity.magnitude;
+		if (evading) movementSpeed *= 2.0f;
         animator.SetFloat("Speed", movementSpeed);
         if (movementSpeed >= 0.1)
         {
@@ -101,20 +101,15 @@ public class CitizenMovement : MonoBehaviour {
 
 	public void BecomeSpooked(Vector3 spookLocation)
 	{
-		if (nav.enabled)
-		{
-			spookyPosition = spookLocation;
-			evading = true;
-			nav.speed *= 3.0f;
-			Vector3 direction = (transform.position - spookyPosition).normalized;
-			destination = DirectionalNavSphere(transform.position, direction, RandomPathSearchDistance, -1);
+		spookyPosition = spookLocation;
+		evading = true;
+		Vector3 direction = (transform.position - spookyPosition).normalized;
+		destination = DirectionalNavSphere(transform.position, direction, RandomPathSearchDistance, -1);
+		nav.SetDestination(destination);
+		waitCurrent = 0;
+		walking = true;
 
-			nav.SetDestination(destination);
-			waitCurrent = 0;
-			walking = true;
-
-			StartCoroutine(waitThenCallback(2.0f, () => { evading = false; nav.speed /= 3.0f; }));
-		}
+		waitThenCallback(5.0f, () => { evading = false; });
 	}
 
 	private IEnumerator waitThenCallback(float waitTimeSeconds, System.Action callback)

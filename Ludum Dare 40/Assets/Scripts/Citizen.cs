@@ -92,10 +92,6 @@ public class Citizen : MonoBehaviour
 
 	public void OnSpooked(Vector3 spookLocation)
 	{
-		// 2spooky
-		if (type != CitizenType.Attacker)
-		{
-			movement.BecomeSpooked(spookLocation);
-		}
+		movement.BecomeSpooked(spookLocation);
 	}
 }
