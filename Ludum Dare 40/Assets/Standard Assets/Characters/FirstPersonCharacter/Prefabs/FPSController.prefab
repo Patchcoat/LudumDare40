@@ -13177,7 +13177,7 @@ MonoBehaviour:
   m_ShotForce: 1000
   m_ShotDamage: 100
   m_ZoomFOV: 20
-  m_ZoomAimSpeed: 0.15
+  m_ZoomAimSpeed: 0.5
   m_ZoomSpeed: 15
   m_CrosshairScale: 0
   m_WalkSpeed: 5
