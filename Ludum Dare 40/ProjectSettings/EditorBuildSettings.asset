@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/StartScreen.unity
     guid: 2b23009d31fa9d74e80ab413b8168076
-  - enabled: 1
+  - enabled: 0
     path: Assets/Level1.unity
     guid: dcdde4c6e19b5f246a7e78e3b77e8675
+  - enabled: 1
+    path: Assets/level4.unity
+    guid: 435a076849972d746b67ae919f22f52b
